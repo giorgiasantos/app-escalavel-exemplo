@@ -1,0 +1,32 @@
+version: '3'
+services:
+  users-service:
+    build:
+      context: ./users-service
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
+    networks:
+      - my-network
+  product-service:
+    build:
+      context: ./product-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
+    networks:
+      - my-network
+  order-service:
+    build:
+      context: ./order-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
+    networks:
+      - my-network
+networks:
+  my-network:
+      driver: bridge
